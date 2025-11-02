@@ -1,10 +1,12 @@
-const mongoose = require("mongoose"); 
+// db.js (or models/todo.js)
+const mongoose = require("mongoose");
 
-mongoose.connect("mongodb+srv://ashishbadki03_db_user:tlaIyKBCmtBzBYwI@todo-cluster.vhp2fni.mongodb.net/Tododb");
- const todoSchema = mongoose.Schema({ 
-    title: String, description: String, completed: Boolean, 
-}); 
+const todoSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  description: String,
+  completed: { type: Boolean, default: false },
+}, { timestamps: true });
 
-const todo = mongoose.model('todos',  todoSchema); 
+const Todo = mongoose.model("Todo", todoSchema); // model name: Todo
 
-module.exports = { todo, };
+module.exports = { Todo };
